@@ -18,26 +18,12 @@ config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configurar CORS
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
-  'http://localhost:3000',
-  'https://pjulianv.github.io'
-];
-
+// Configurar CORS - permitir todos los orígenes para mismo dominio
 app.use(cors({
-  origin: function(origin, callback) {
-    // Permitir requests sin origin (como Postman) en desarrollo
-    if (!origin && process.env.NODE_ENV === 'development') {
-      return callback(null, true);
-    }
-    
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por CORS'));
-    }
-  },
-  credentials: true
+  origin: true, // Permite cualquier origen (incluyendo mismo dominio)
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Middleware de seguridad
