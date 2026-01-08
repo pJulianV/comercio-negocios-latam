@@ -57,6 +57,19 @@ const contactLimiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Backend API - Comercio y Negocios Latam SAC',
+    status: 'online',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      contact: 'POST /api/contact'
+    }
+  });
+});
+
 // Rutas
 app.get('/api/health', (req, res) => {
   res.json({ 
@@ -81,8 +94,9 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
+const PORT_TO_USE = process.env.PORT || PORT;
+app.listen(PORT_TO_USE, () => {
+  console.log(`🚀 Servidor corriendo en puerto ${PORT_TO_USE}`);
   console.log(`📧 Email configurado: ${process.env.EMAIL_USER || 'No configurado'}`);
   console.log(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
   console.log(`\n📌 Endpoints disponibles:`);

@@ -1,9 +1,7 @@
 // Manejo del formulario de contacto
 
-// URL del backend - CAMBIAR cuando esté en producción
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://comercio-negocios-backend.onrender.com' 
-  : 'http://localhost:3000';
+// URL del backend en Render
+const API_URL = 'https://comercio-negocios-latam.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('.contacto-form');
@@ -47,7 +45,7 @@ async function handleFormSubmit(e) {
   
   try {
     // Enviar al backend
-    const response = await fetch('http://localhost:3000/api/contact', {
+    const response = await fetch(`${API_URL}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -66,7 +64,7 @@ async function handleFormSubmit(e) {
     
   } catch (error) {
     console.error('Error:', error);
-    showErrors(['Error de conexión. Por favor, intenta nuevamente.']);
+    showErrors(['Error de conexión. Por favor, intenta nuevamente más tarde.']);
   } finally {
     // Restaurar botón
     submitButton.disabled = false;
