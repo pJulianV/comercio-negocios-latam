@@ -196,22 +196,17 @@ export const sendContactEmail = async (data) => {
     `;
 
     // Enviar email al administrador
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: 'Comercio Negocios Latam <onboarding@resend.dev>',
       to: adminEmail,
       subject: `Nuevo contacto desde el sitio web - ${empresa}`,
       html: adminHtml
     });
 
-    // Enviar email de confirmación al usuario
-    await resend.emails.send({
-      from: 'Comercio Negocios Latam <onboarding@resend.dev>',
-      to: email,
-      subject: 'Hemos recibido tu mensaje - Comercio y Negocios Latam SAC',
-      html: userHtml
-    });
-
-    console.log(`✅ Emails enviados correctamente a ${adminEmail} y ${email}`);
+    // Por ahora solo enviamos al admin hasta verificar dominio
+    // TODO: Configurar dominio verificado en Resend para enviar confirmación al usuario
+    
+    console.log(`✅ Email enviado correctamente a ${adminEmail}`, result);
     return true;
 
   } catch (error) {
