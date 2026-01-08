@@ -3,8 +3,14 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { config } from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import contactRouter from './routes/contact.js';
 import { errorHandler } from './middleware/errorHandler.js';
+
+// Para usar __dirname en ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Cargar variables de entorno
 config();
@@ -35,7 +41,17 @@ app.use(cors({
 }));
 
 // Middleware de seguridad
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Desactivar para permitir inline scripts
+  crossOriginEmbedderPolicy: false
+}));
+
+// Servir archivos estáticos (Frontend)
+app.use(express.static(__dirname));
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
 // Rate limiting - máximo 100 requests por 15 minutos por IP
 const limiter = rateLimit({
@@ -81,6 +97,11 @@ app.get('/api/health', (req, res) => {
 
 // Rutas de contacto
 app.use('/api/contact', contactLimiter, contactRouter);
+
+// Servir página principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Manejo de rutas no encontradas
 app.use('*', (req, res) => {

@@ -1,7 +1,7 @@
 // Manejo del formulario de contacto
 
-// URL del backend en Render
-const API_URL = 'https://comercio-negocios-latam.onrender.com';
+// URL del backend - usar ruta relativa ya que frontend y backend están juntos
+const API_URL = window.location.origin;
 
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('.contacto-form');
