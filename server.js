@@ -39,6 +39,18 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
+// Middleware para URLs limpias - servir .html sin extensión
+app.use((req, res, next) => {
+  if (req.path.indexOf('.') === -1 && req.path !== '/') {
+    const htmlPath = path.join(__dirname, 'pages', req.path + '.html');
+    const fs = require('fs');
+    if (fs.existsSync(htmlPath)) {
+      return res.sendFile(htmlPath);
+    }
+  }
+  next();
+});
+
 // Rate limiting - máximo 100 requests por 15 minutos por IP
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
