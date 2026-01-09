@@ -7,6 +7,11 @@
   <link rel="icon" type="image/jpeg" href="img/Icon.jpeg">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=2">
+  
+  <!-- Hreflang for SEO -->
+  <link rel="alternate" hreflang="es" href="https://cynlatam.com/" />
+  <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/" />
 </head>
 <body>
   <!-- #00183E azul  #c19e5c dorado #EEF0ED blanco  -->
@@ -23,8 +28,8 @@
           <li><a href="pages/contacto" data-i18n="header.menu.contact">Contáctanos</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector" aria-label="Selector de idioma">
-            <option value="es">🇪🇸 Español</option>
+          <select id="language-selector" class="language-selector" aria-label="Selector de idioma" onchange="window.location.href = this.value === 'es' ? '/' : '/en/'">
+            <option value="es" selected>🇪🇸 Español</option>
             <option value="en">🇺🇸 English</option>
           </select>
         </div>

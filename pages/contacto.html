@@ -25,8 +25,8 @@
           <li><a href="contacto" data-i18n="header.menu.contact">Contáctanos</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector">
-            <option value="es">🇪🇸 Español</option>
+          <select id="language-selector" class="language-selector" onchange="window.location.href = this.value === 'es' ? '/pages/contacto' : '/en/pages/contact'">
+            <option value="es" selected>🇪🇸 Español</option>
             <option value="en">🇺🇸 English</option>
           </select>
         </div>
