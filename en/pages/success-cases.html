@@ -20,13 +20,13 @@
       </div>
       <nav>
         <ul>
-          <li><a href="../index.html#home" data-i18n="header.menu.home">Home</a></li>
-          <li><a href="about-us.html" data-i18n="header.menu.about">About Us</a></li>
-          <li><a href="../index.html#services" data-i18n="header.menu.services">Services</a></li>
-          <li><a href="contact.html" data-i18n="header.menu.contact">Contact</a></li>
+          <li><a href="../index.html#home">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="../index.html#services">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector">
+          <select id="language-selector" class="language-selector" onchange="window.location.href = this.value === 'es' ? '/pages/casos-exito' : '/en/pages/success-cases'">
             <option value="es">🇪🇸 Español</option>
             <option value="en" selected="selected">🇺🇸 English</option>
           </select>
