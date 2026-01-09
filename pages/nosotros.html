@@ -24,8 +24,8 @@
           <li><a href="contacto">Contáctanos</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector" aria-label="Selector de idioma">
-            <option value="es">🇪🇸 Español</option>
+          <select id="language-selector" class="language-selector" aria-label="Selector de idioma" onchange="window.location.href = this.value === 'es' ? '/pages/nosotros' : '/en/pages/about-us'">
+            <option value="es" selected>🇪🇸 Español</option>
             <option value="en">🇺🇸 English</option>
           </select>
         </div>
