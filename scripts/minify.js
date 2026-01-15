@@ -35,26 +35,23 @@ function createDistFolder() {
 
 function minifyCSS() {
   log('\n📦 Minificando CSS...', 'blue');
-  
+
   try {
     // Minificar archivo CSS principal
-    execSync(
-      'npx cleancss -o dist/css/style.min.css css/style.css',
-      { stdio: 'inherit' }
-    );
-    
+    execSync('npx cleancss -o dist/css/style.min.css css/style.css', { stdio: 'inherit' });
+
     // Copiar estructura de carpetas
     if (!fs.existsSync('dist/css')) {
       fs.mkdirSync('dist/css', { recursive: true });
     }
-    
+
     log('✓ CSS minificado correctamente', 'green');
-    
+
     // Mostrar estadísticas
     const originalSize = fs.statSync('css/style.css').size;
     const minifiedSize = fs.statSync('dist/css/style.min.css').size;
     const reduction = ((1 - minifiedSize / originalSize) * 100).toFixed(2);
-    
+
     log(`  Original: ${(originalSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Minificado: ${(minifiedSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Reducción: ${reduction}%`, 'green');
@@ -66,26 +63,25 @@ function minifyCSS() {
 
 function minifyJS() {
   log('\n📦 Minificando JavaScript...', 'blue');
-  
+
   try {
     // Crear carpeta dist/js si no existe
     if (!fs.existsSync('dist/js')) {
       fs.mkdirSync('dist/js', { recursive: true });
     }
-    
+
     // Minificar script.js principal
-    execSync(
-      'npx terser js/script.js -o dist/js/script.min.js --compress --mangle',
-      { stdio: 'inherit' }
-    );
-    
+    execSync('npx terser js/script.js -o dist/js/script.min.js --compress --mangle', {
+      stdio: 'inherit',
+    });
+
     log('✓ JavaScript minificado correctamente', 'green');
-    
+
     // Mostrar estadísticas
     const originalSize = fs.statSync('js/script.js').size;
     const minifiedSize = fs.statSync('dist/js/script.min.js').size;
     const reduction = ((1 - minifiedSize / originalSize) * 100).toFixed(2);
-    
+
     log(`  Original: ${(originalSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Minificado: ${(minifiedSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Reducción: ${reduction}%`, 'green');
@@ -97,21 +93,21 @@ function minifyJS() {
 
 function minifyHTML() {
   log('\n📦 Minificando HTML...', 'blue');
-  
+
   try {
     // Minificar index.html
     execSync(
       'npx html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o dist/index.html index.html',
       { stdio: 'inherit' }
     );
-    
+
     log('✓ HTML minificado correctamente', 'green');
-    
+
     // Mostrar estadísticas
     const originalSize = fs.statSync('index.html').size;
     const minifiedSize = fs.statSync('dist/index.html').size;
     const reduction = ((1 - minifiedSize / originalSize) * 100).toFixed(2);
-    
+
     log(`  Original: ${(originalSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Minificado: ${(minifiedSize / 1024).toFixed(2)} KB`, 'yellow');
     log(`  Reducción: ${reduction}%`, 'green');
@@ -123,20 +119,20 @@ function minifyHTML() {
 
 function copyAssets() {
   log('\n📋 Copiando assets...', 'blue');
-  
+
   try {
     // Copiar imágenes
     if (fs.existsSync('img')) {
       fs.cpSync('img', 'dist/img', { recursive: true });
       log('✓ Imágenes copiadas', 'green');
     }
-    
+
     // Copiar páginas
     if (fs.existsSync('pages')) {
       fs.cpSync('pages', 'dist/pages', { recursive: true });
       log('✓ Páginas copiadas', 'green');
     }
-    
+
     // Copiar traducciones
     if (fs.existsSync('js/translations')) {
       if (!fs.existsSync('dist/js/translations')) {
@@ -145,7 +141,6 @@ function copyAssets() {
       fs.cpSync('js/translations', 'dist/js/translations', { recursive: true });
       log('✓ Traducciones copiadas', 'green');
     }
-    
   } catch (error) {
     log('✗ Error al copiar assets', 'red');
     console.error(error);
@@ -155,28 +150,28 @@ function copyAssets() {
 function generateReport() {
   log('\n📊 Resumen de minificación', 'blue');
   log('================================', 'blue');
-  
+
   try {
     const distPath = path.join(__dirname, '..', 'dist');
-    
+
     function getDirSize(dirPath) {
       let size = 0;
       const files = fs.readdirSync(dirPath);
-      
+
       files.forEach((file) => {
         const filePath = path.join(dirPath, file);
         const stats = fs.statSync(filePath);
-        
+
         if (stats.isDirectory()) {
           size += getDirSize(filePath);
         } else {
           size += stats.size;
         }
       });
-      
+
       return size;
     }
-    
+
     const totalSize = getDirSize(distPath);
     log(`Tamaño total de dist/: ${(totalSize / 1024 / 1024).toFixed(2)} MB`, 'green');
     log('\n✅ Minificación completada exitosamente!', 'green');

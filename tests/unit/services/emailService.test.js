@@ -4,7 +4,7 @@ import { jest } from '@jest/globals';
 
 // Mock de Resend
 jest.unstable_mockModule('resend', () => ({
-  Resend: jest.fn()
+  Resend: jest.fn(),
 }));
 
 describe('EmailService', () => {

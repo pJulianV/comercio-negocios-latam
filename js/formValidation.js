@@ -1,22 +1,7 @@
 // Manejo del formulario de contacto
-import { sanitizeContactForm } from './sanitizer.js';
 
 // URL del backend - Cloudflare Worker (siempre activo, gratis)
 const API_URL = 'https://julianvargasdev.com';
-
-/**
- * Obtener cookie por nombre
- * @param {string} name - Nombre de la cookie
- * @returns {string|null} Valor de la cookie o null
- */
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return parts.pop().split(';').shift();
-  }
-  return null;
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('.contacto-form');
@@ -37,16 +22,13 @@ async function handleFormSubmit(e) {
   const originalButtonText = submitButton.textContent;
   
   // Obtener los datos del formulario
-  const rawFormData = {
+  const formData = {
     nombre: form.nombre.value.trim(),
     empresa: form.empresa.value.trim(),
     email: form.email.value.trim(),
     telefono: form.telefono?.value.trim() || '',
     mensaje: form.mensaje.value.trim()
   };
-  
-  // Sanitizar datos para prevenir XSS
-  const formData = sanitizeContactForm(rawFormData);
   
   // Validar formulario
   const validationErrors = validateForm(formData);
@@ -62,17 +44,12 @@ async function handleFormSubmit(e) {
   submitButton.style.opacity = '0.7';
   
   try {
-    // Obtener token CSRF de la cookie
-    const csrfToken = getCookie('csrf-token');
-    
-    // Enviar al backend con token CSRF
+    // Enviar al backend
     const response = await fetch(`${API_URL}/api/contact`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken // Incluir token CSRF en header
+        'Content-Type': 'application/json'
       },
-      credentials: 'include', // Incluir cookies
       body: JSON.stringify(formData)
     });
     
@@ -153,19 +130,12 @@ function showErrors(errors) {
   const form = document.querySelector('.contacto-form');
   const messageDiv = document.createElement('div');
   messageDiv.className = 'form-message form-error';
-  
-  // Crear estructura segura sin innerHTML
-  const strong = document.createElement('strong');
-  strong.textContent = '⚠️ Error:';
-  messageDiv.appendChild(strong);
-  
-  const ul = document.createElement('ul');
-  errors.forEach(error => {
-    const li = document.createElement('li');
-    li.textContent = error; // Usar textContent para prevenir XSS
-    ul.appendChild(li);
-  });
-  messageDiv.appendChild(ul);
+  messageDiv.innerHTML = `
+    <strong>⚠️ Error:</strong>
+    <ul>
+      ${errors.map(error => `<li>${error}</li>`).join('')}
+    </ul>
+  `;
   
   form.insertBefore(messageDiv, form.firstChild);
   
@@ -185,15 +155,9 @@ function showSuccess(message) {
   const form = document.querySelector('.contacto-form');
   const messageDiv = document.createElement('div');
   messageDiv.className = 'form-message form-success';
-  
-  // Crear estructura segura sin innerHTML
-  const strong = document.createElement('strong');
-  strong.textContent = '✅ Éxito: ';
-  messageDiv.appendChild(strong);
-  
-  const span = document.createElement('span');
-  span.textContent = message; // Usar textContent para prevenir XSS
-  messageDiv.appendChild(span);
+  messageDiv.innerHTML = `
+    <strong>✅ Éxito:</strong> ${message}
+  `;
   
   form.insertBefore(messageDiv, form.firstChild);
   

@@ -3,10 +3,7 @@ export default {
   testEnvironment: 'node',
 
   // Patrón para encontrar archivos de test
-  testMatch: [
-    '**/tests/**/*.test.js',
-    '**/tests/**/*.spec.js'
-  ],
+  testMatch: ['**/tests/**/*.test.js', '**/tests/**/*.spec.js'],
 
   // Cobertura de código
   collectCoverageFrom: [
@@ -16,7 +13,7 @@ export default {
     'middleware/**/*.js',
     'utils/**/*.js',
     '!**/node_modules/**',
-    '!**/tests/**'
+    '!**/tests/**',
   ],
 
   // Umbral mínimo de cobertura
@@ -25,8 +22,8 @@ export default {
       branches: 60,
       functions: 60,
       lines: 60,
-      statements: 60
-    }
+      statements: 60,
+    },
   },
 
   // Directorio para reportes de cobertura
@@ -58,6 +55,6 @@ export default {
 
   // Configuración para módulos ES
   moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
-  }
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };

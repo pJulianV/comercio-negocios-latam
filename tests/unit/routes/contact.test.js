@@ -6,7 +6,7 @@ import { jest } from '@jest/globals';
 
 // Mock del email service
 jest.unstable_mockModule('../../../services/emailService.js', () => ({
-  sendContactEmail: jest.fn()
+  sendContactEmail: jest.fn(),
 }));
 
 describe('Contact Route', () => {
@@ -34,10 +34,7 @@ describe('Contact Route', () => {
     test('debe enviar formulario correctamente con datos válidos', async () => {
       emailService.sendContactEmail.mockResolvedValue(true);
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(validFormData)
-        .expect(200);
+      const response = await request(app).post('/api/contact').send(validFormData).expect(200);
 
       expect(response.body).toEqual({
         success: true,
@@ -58,10 +55,7 @@ describe('Contact Route', () => {
     test('debe rechazar formulario sin nombre', async () => {
       const invalidData = { ...validFormData, nombre: '' };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
       expect(response.body.errors).toBeDefined();
@@ -71,10 +65,7 @@ describe('Contact Route', () => {
     test('debe rechazar formulario sin empresa', async () => {
       const invalidData = { ...validFormData, empresa: '' };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
       expect(response.body.errors.some((e) => e.field === 'empresa')).toBe(true);
@@ -83,10 +74,7 @@ describe('Contact Route', () => {
     test('debe rechazar email inválido', async () => {
       const invalidData = { ...validFormData, email: 'email-invalido' };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
       expect(response.body.errors.some((e) => e.field === 'email')).toBe(true);
@@ -95,10 +83,7 @@ describe('Contact Route', () => {
     test('debe rechazar mensaje muy corto', async () => {
       const invalidData = { ...validFormData, mensaje: 'Corto' };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
       expect(response.body.errors.some((e) => e.field === 'mensaje')).toBe(true);
@@ -107,10 +92,7 @@ describe('Contact Route', () => {
     test('debe rechazar teléfono con caracteres inválidos', async () => {
       const invalidData = { ...validFormData, telefono: 'abc123xyz' };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
     });
@@ -120,10 +102,7 @@ describe('Contact Route', () => {
       const dataWithoutPhone = { ...validFormData };
       delete dataWithoutPhone.telefono;
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(dataWithoutPhone)
-        .expect(200);
+      const response = await request(app).post('/api/contact').send(dataWithoutPhone).expect(200);
 
       expect(response.body.success).toBe(true);
     });
@@ -131,10 +110,7 @@ describe('Contact Route', () => {
     test('debe retornar error 500 si el servicio de email falla', async () => {
       emailService.sendContactEmail.mockResolvedValue(false);
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(validFormData)
-        .expect(500);
+      const response = await request(app).post('/api/contact').send(validFormData).expect(500);
 
       expect(response.body).toEqual({
         success: false,
@@ -145,10 +121,7 @@ describe('Contact Route', () => {
     test('debe retornar error 500 si hay excepción en el servicio', async () => {
       emailService.sendContactEmail.mockRejectedValue(new Error('Service error'));
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(validFormData)
-        .expect(500);
+      const response = await request(app).post('/api/contact').send(validFormData).expect(500);
 
       expect(response.body).toEqual({
         success: false,

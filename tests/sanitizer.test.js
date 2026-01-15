@@ -141,7 +141,7 @@ describe('Sanitization Functions', () => {
 
     test('Debería manejar datos incompletos', () => {
       const result = sanitizeContactForm({});
-      
+
       expect(result.nombre).toBe('');
       expect(result.empresa).toBe('');
       expect(result.email).toBe('');

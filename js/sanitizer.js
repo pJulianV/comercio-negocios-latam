@@ -15,7 +15,7 @@ export function sanitizeText(input) {
   if (typeof input !== 'string') {
     return '';
   }
-  
+
   // Usar DOMPurify si está disponible
   if (typeof DOMPurify !== 'undefined') {
     return DOMPurify.sanitize(input, {
@@ -23,7 +23,7 @@ export function sanitizeText(input) {
       KEEP_CONTENT: true, // Mantener el contenido de texto
     });
   }
-  
+
   // Fallback: escape manual básico
   return input
     .replace(/&/g, '&amp;')
@@ -43,14 +43,14 @@ export function sanitizeHTML(input) {
   if (typeof input !== 'string') {
     return '';
   }
-  
+
   if (typeof DOMPurify !== 'undefined') {
     return DOMPurify.sanitize(input, {
       ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
       ALLOWED_ATTR: ['href', 'title'],
     });
   }
-  
+
   // Fallback: remover todo HTML
   return sanitizeText(input);
 }
@@ -64,17 +64,17 @@ export function sanitizeURL(url) {
   if (typeof url !== 'string') {
     return '';
   }
-  
+
   try {
     const parsed = new URL(url);
     // Solo permitir protocolos seguros
     if (['http:', 'https:', 'mailto:'].includes(parsed.protocol)) {
       return parsed.href;
     }
-  } catch (e) {
+  } catch (_e) {
     // URL inválida
   }
-  
+
   return '';
 }
 
@@ -87,16 +87,16 @@ export function sanitizeEmail(email) {
   if (typeof email !== 'string') {
     return '';
   }
-  
+
   // Remover espacios y convertir a minúsculas
   email = email.trim().toLowerCase();
-  
+
   // Validar formato básico de email
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   if (emailRegex.test(email)) {
     return sanitizeText(email);
   }
-  
+
   return '';
 }
 
@@ -109,7 +109,7 @@ export function sanitizePhone(phone) {
   if (typeof phone !== 'string') {
     return '';
   }
-  
+
   // Permitir solo números, espacios, +, -, (, )
   return phone.replace(/[^0-9\s+\-()]/g, '').trim();
 }
@@ -135,10 +135,10 @@ export function sanitizeContactForm(formData) {
  */
 export function attachSanitizer(input) {
   if (!input) return;
-  
+
   input.addEventListener('blur', function () {
     const type = this.getAttribute('data-sanitize') || 'text';
-    
+
     switch (type) {
       case 'email':
         this.value = sanitizeEmail(this.value);
@@ -163,10 +163,10 @@ export function initFormSanitization() {
   document.querySelectorAll('[data-sanitize]').forEach((input) => {
     attachSanitizer(input);
   });
-  
+
   // Sanitizar formularios al enviar
   document.querySelectorAll('form').forEach((form) => {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', function (_e) {
       // Sanitizar todos los inputs del formulario
       this.querySelectorAll('input, textarea').forEach((input) => {
         if (input.type !== 'submit' && input.type !== 'button') {

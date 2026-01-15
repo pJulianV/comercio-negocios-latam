@@ -5,14 +5,7 @@ import prettierConfig from 'eslint-config-prettier';
 export default [
   js.configs.recommended,
   {
-    ignores: [
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-      'coverage/**',
-      '*.min.js',
-      'ejemplos/**',
-    ],
+    ignores: ['node_modules/**', 'dist/**', 'build/**', 'coverage/**', '*.min.js', 'ejemplos/**'],
   },
   {
     files: ['**/*.js'],
@@ -31,6 +24,14 @@ export default [
         document: 'readonly',
         navigator: 'readonly',
         fetch: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        localStorage: 'readonly',
+        URL: 'readonly',
+        IntersectionObserver: 'readonly',
+        HTMLImageElement: 'readonly',
+        Image: 'readonly',
         // Jest
         describe: 'readonly',
         test: 'readonly',
@@ -40,8 +41,20 @@ export default [
         beforeAll: 'readonly',
         afterAll: 'readonly',
         jest: 'readonly',
+        global: 'readonly',
         // DOMPurify
         DOMPurify: 'readonly',
+        // Service Worker
+        self: 'readonly',
+        caches: 'readonly',
+        clients: 'readonly',
+        location: 'readonly',
+        Request: 'readonly',
+        Response: 'readonly',
+        Headers: 'readonly',
+        Notification: 'readonly',
+        PushManager: 'readonly',
+        SyncManager: 'readonly',
       },
     },
     plugins: {

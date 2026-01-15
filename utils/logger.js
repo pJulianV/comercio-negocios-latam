@@ -64,10 +64,7 @@ const auditTransport = new DailyRotateFile({
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: customFormat,
-  transports: [
-    fileTransport,
-    errorTransport,
-  ],
+  transports: [fileTransport, errorTransport],
   exceptionHandlers: [
     new DailyRotateFile({
       filename: path.join(__dirname, '..', 'logs', 'exceptions-%DATE%.log'),

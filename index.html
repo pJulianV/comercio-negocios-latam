@@ -10,9 +10,6 @@
   <link rel="shortcut icon" type="image/jpeg" href="img/Icon.jpeg">
   <link rel="apple-touch-icon" href="img/Icon.jpeg">
   
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
-  
   <!-- Meta Tags para SEO -->
   <meta name="description" content="Comercio y Negocios Latam SAC - Desarrollamos oportunidades, impulsamos crecimiento. Empresa del Grupo CASNU especializada en consultoría estratégica y desarrollo de negocios internacionales.">
   <meta name="keywords" content="consultoría empresarial, negocios internacionales, comercio internacional, Perú, Lima, CASNU">
@@ -31,41 +28,15 @@
   <meta name="twitter:description" content="Desarrollamos oportunidades, impulsamos crecimiento">
   <meta name="twitter:image" content="https://cynlatam.com/img/Icon.jpeg">
   
-  <!-- Google Fonts con SRI -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" 
-        rel="stylesheet"
-        integrity="sha384-Y4Jt0LYeeyoXoBydfCfliLSyt4SEikX5SraRCgCwlxFZEZA6MH0Kh6iyiI95CyUY"
-        crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=2">
   
   <!-- Hreflang for SEO -->
   <link rel="alternate" hreflang="es" href="https://cynlatam.com/" />
   <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/" />
   <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/" />
-  
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-  <!-- End Google Tag Manager -->
-  
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  <!-- End Google Analytics 4 -->
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <!-- #00183E azul  #c19e5c dorado #EEF0ED blanco  -->
   <header>
     <div class="header-container">
@@ -101,7 +72,7 @@
         <a href="pages/contacto" class="cta-button">Contáctanos</a>
       </div>
       <div class="hero-image">
-        <img src="img/SanIsidroLima.jpg" alt="Oficinas San Isidro Lima" loading="lazy">
+        <img src="img/SanIsidroLima.jpg" alt="Oficinas San Isidro Lima">
       </div>
     </div>
   </section>
@@ -110,7 +81,7 @@
     <section id="nosotros" class="about-us">
       <div class="about-container">
         <div class="about-image">
-          <img src="img/propuesta.jpg" alt="Propuesta de Valor" loading="lazy">
+          <img src="img/economic.png" alt="Propuesta de Valor" onerror="this.onerror=null;this.src='img/placeholder.jpg'">
         </div>
         <div class="about-content">
           <span class="about-tag">EXCELENCIA CORPORATIVA</span>
@@ -197,6 +168,19 @@
             </a>
           </div>
         </div>
+        <div class="core-card" style="background-image: url('img/asesoria-financiera.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Asesoría Financiera</h3>
+              <p>Soluciones y consultoría financiera para el crecimiento y estabilidad de su empresa</p>
+            </div>
+            <a href="pages/asesoria-financiera.html" class="core-card-link" aria-label="Más información">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -276,141 +260,7 @@
     </div>
   </footer>
   
-  <!-- DOMPurify para sanitización de inputs con SRI -->
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js" 
-          integrity="sha384-vdScihEZCfbPnBQf+lc7LgXUdJVYyhC3yWHUW5C5P5GpHRqVnaM6HJELJxT6IqwM"
-          crossorigin="anonymous"></script>
-  
-  <!-- Scripts modulares -->
-  <script type="module" src="js/sanitizer.js"></script>
   <script src="js/script.js"></script>
-  
-  <!-- PWA Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then((registration) => {
-            console.log('SW registered: ', registration);
-            
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              if (newWorker) {
-                newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    // New content is available, show update prompt
-                    showUpdateNotification();
-                  }
-                });
-              }
-            });
-          })
-          .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-
-    function showUpdateNotification() {
-      // Create update notification
-      const notification = document.createElement('div');
-      notification.className = 'update-notification';
-      notification.innerHTML = `
-        <div style="
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: #002156;
-          color: white;
-          padding: 1rem;
-          border-radius: 5px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-          z-index: 10000;
-          max-width: 300px;
-        ">
-          <p style="margin: 0 0 1rem 0;">Nueva versión disponible</p>
-          <button onclick="location.reload()" style="
-            background: #c19e5c;
-            color: #002156;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-            cursor: pointer;
-            margin-right: 0.5rem;
-          ">Actualizar</button>
-          <button onclick="this.parentElement.remove()" style="
-            background: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-            cursor: pointer;
-          ">Después</button>
-        </div>
-      `;
-      document.body.appendChild(notification);
-    }
-
-    // PWA Install Prompt
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
-      // Stash the event so it can be triggered later
-      deferredPrompt = e;
-      
-      // Show install button or notification
-      showInstallPrompt();
-    });
-
-    function showInstallPrompt() {
-      if (!deferredPrompt) return;
-
-      const installBtn = document.createElement('button');
-      installBtn.className = 'install-btn';
-      installBtn.innerHTML = '📱 Instalar App';
-      installBtn.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #002156;
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 50px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        font-weight: 500;
-        z-index: 1000;
-        display: none;
-      `;
-
-      installBtn.onclick = async () => {
-        // Hide the install button
-        installBtn.style.display = 'none';
-        
-        // Show the install prompt
-        deferredPrompt.prompt();
-        
-        // Wait for the user to respond to the prompt
-        const { outcome } = await deferredPrompt.userChoice;
-        
-        // Reset the deferred prompt variable
-        deferredPrompt = null;
-        
-        console.log(`User response to install prompt: ${outcome}`);
-      };
-
-      document.body.appendChild(installBtn);
-
-      // Show button after a delay
-      setTimeout(() => {
-        installBtn.style.display = 'block';
-      }, 3000);
-    }
-  </script>
 </body>
 </html>
 

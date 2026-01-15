@@ -9,7 +9,7 @@ import { jest } from '@jest/globals';
 
 // Mock del email service
 jest.unstable_mockModule('../../services/emailService.js', () => ({
-  sendContactEmail: jest.fn()
+  sendContactEmail: jest.fn(),
 }));
 
 describe('API Integration Tests', () => {
@@ -96,10 +96,7 @@ describe('API Integration Tests', () => {
         mensaje: 'Corto', // Mensaje muy corto
       };
 
-      const response = await request(app)
-        .post('/api/contact')
-        .send(invalidData)
-        .expect(400);
+      const response = await request(app).post('/api/contact').send(invalidData).expect(400);
 
       expect(response.body.success).toBe(false);
       expect(response.body.errors).toBeDefined();
@@ -201,9 +198,7 @@ describe('API Integration Tests', () => {
       const response = await request(app)
         .post('/api/contact')
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send(
-          'nombre=Test&empresa=Company&email=test@test.com&mensaje=Mensaje de prueba válido'
-        )
+        .send('nombre=Test&empresa=Company&email=test@test.com&mensaje=Mensaje de prueba válido')
         .expect(200);
 
       expect(response.body.success).toBe(true);

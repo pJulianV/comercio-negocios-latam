@@ -1,10 +1,8 @@
 import express from 'express';
-import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -90,7 +88,7 @@ router.get('/sitemap.xml', (req, res) => {
  */
 router.get('/robots.txt', (req, res) => {
   const baseUrl = req.protocol + '://' + req.get('host');
-  
+
   const robotsTxt = `# Comercio y Negocios Latam SAC
 User-agent: *
 Allow: /

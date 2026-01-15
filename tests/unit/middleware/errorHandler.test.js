@@ -13,7 +13,7 @@ describe('Error Handler Middleware', () => {
       json: jest.fn().mockReturnThis(),
     };
     mockNext = jest.fn();
-    
+
     // Mock console.error para evitar logs en tests
     jest.spyOn(console, 'error').mockImplementation(() => {});
   });

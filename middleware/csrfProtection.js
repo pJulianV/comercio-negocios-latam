@@ -28,16 +28,16 @@ function generateToken() {
 export function createCsrfToken(sessionId) {
   const token = generateToken();
   const expiry = Date.now() + TOKEN_EXPIRY;
-  
+
   tokenStore.set(token, {
     sessionId,
     expiry,
     used: false,
   });
-  
+
   // Limpiar tokens expirados
   cleanupExpiredTokens();
-  
+
   return token;
 }
 
@@ -51,32 +51,32 @@ export function validateCsrfToken(token, sessionId) {
   if (!token || !sessionId) {
     return false;
   }
-  
+
   const tokenData = tokenStore.get(token);
-  
+
   if (!tokenData) {
     return false;
   }
-  
+
   // Verificar si el token expiró
   if (Date.now() > tokenData.expiry) {
     tokenStore.delete(token);
     return false;
   }
-  
+
   // Verificar si el token ya fue usado
   if (tokenData.used) {
     return false;
   }
-  
+
   // Verificar que el token pertenece a la sesión correcta
   if (tokenData.sessionId !== sessionId) {
     return false;
   }
-  
+
   // Marcar el token como usado (one-time use)
   tokenData.used = true;
-  
+
   return true;
 }
 
@@ -85,7 +85,7 @@ export function validateCsrfToken(token, sessionId) {
  */
 function cleanupExpiredTokens() {
   const now = Date.now();
-  
+
   for (const [token, data] of tokenStore.entries()) {
     if (now > data.expiry || data.used) {
       tokenStore.delete(token);
@@ -99,7 +99,7 @@ function cleanupExpiredTokens() {
 export function csrfTokenGenerator(req, res, next) {
   // Obtener o crear sessionId
   let sessionId = req.cookies?.sessionId;
-  
+
   if (!sessionId) {
     sessionId = crypto.randomUUID();
     res.cookie('sessionId', sessionId, {
@@ -109,10 +109,10 @@ export function csrfTokenGenerator(req, res, next) {
       maxAge: 1000 * 60 * 60 * 24, // 24 horas
     });
   }
-  
+
   // Generar nuevo token CSRF
   const csrfToken = createCsrfToken(sessionId);
-  
+
   // Enviar token en cookie (doble submit)
   res.cookie('csrf-token', csrfToken, {
     httpOnly: false, // Necesita ser accesible por JavaScript
@@ -120,11 +120,11 @@ export function csrfTokenGenerator(req, res, next) {
     sameSite: 'strict',
     maxAge: TOKEN_EXPIRY,
   });
-  
+
   // También disponible en el request
   req.csrfToken = csrfToken;
   req.sessionId = sessionId;
-  
+
   next();
 }
 
@@ -136,20 +136,20 @@ export function csrfValidator(req, res, next) {
   if (!['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
     return next();
   }
-  
+
   // Obtener token del header o body
   const token = req.headers['x-csrf-token'] || req.body.csrfToken;
-  
+
   // Obtener sessionId de la cookie
   const sessionId = req.cookies?.sessionId;
-  
+
   if (!token || !sessionId) {
     return res.status(403).json({
       success: false,
       message: 'Token CSRF no proporcionado',
     });
   }
-  
+
   // Validar token
   if (!validateCsrfToken(token, sessionId)) {
     return res.status(403).json({
@@ -157,7 +157,7 @@ export function csrfValidator(req, res, next) {
       message: 'Token CSRF inválido o expirado',
     });
   }
-  
+
   next();
 }
 
@@ -169,7 +169,7 @@ export function csrfProtection(req, res, next) {
   if (req.method === 'GET') {
     return csrfTokenGenerator(req, res, next);
   }
-  
+
   // Validar token para otros métodos
   csrfValidator(req, res, next);
 }
@@ -179,7 +179,7 @@ export function csrfProtection(req, res, next) {
  */
 export function getCsrfTokenEndpoint(req, res) {
   let sessionId = req.cookies?.sessionId;
-  
+
   if (!sessionId) {
     sessionId = crypto.randomUUID();
     res.cookie('sessionId', sessionId, {
@@ -189,16 +189,16 @@ export function getCsrfTokenEndpoint(req, res) {
       maxAge: 1000 * 60 * 60 * 24,
     });
   }
-  
+
   const token = createCsrfToken(sessionId);
-  
+
   res.cookie('csrf-token', token, {
     httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
     maxAge: TOKEN_EXPIRY,
   });
-  
+
   res.json({
     success: true,
     csrfToken: token,

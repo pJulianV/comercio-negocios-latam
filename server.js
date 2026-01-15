@@ -2,17 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import mongoSanitize from 'express-mongo-sanitize';
-import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import contactRouter from './routes/contact.js';
-import sitemapRouter from './routes/sitemap.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import logger, { requestLogger } from './utils/logger.js';
-import { csrfProtection, getCsrfTokenEndpoint } from './middleware/csrfProtection.js';
 
 // Para usar __dirname en ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -29,46 +24,13 @@ app.use(cors({
   origin: true, // Permite cualquier origen (incluyendo mismo dominio)
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token']
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Middleware de seguridad con CSP estricto
+// Middleware de seguridad
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "'unsafe-inline'", // Para GTM y GA (idealmente usar nonce)
-        "https://www.googletagmanager.com",
-        "https://www.google-analytics.com",
-      ],
-      styleSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        "https://fonts.googleapis.com",
-      ],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:", "https://www.google-analytics.com"],
-      connectSrc: [
-        "'self'",
-        "https://api.resend.com",
-        "https://www.google-analytics.com",
-        "https://www.googletagmanager.com",
-      ],
-      frameSrc: ["'self'", "https://www.googletagmanager.com"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true,
-  },
-  noSniff: true,
-  xssFilter: true,
-  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+  contentSecurityPolicy: false, // Desactivar para permitir inline scripts
+  crossOriginEmbedderPolicy: false
 }));
 
 // Servir archivos estáticos (Frontend)
@@ -116,18 +78,6 @@ const contactLimiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Cookie parser (para CSRF y sesiones)
-app.use(cookieParser());
-
-// Sanitización de inputs (prevenir NoSQL injection)
-app.use(mongoSanitize());
-
-// Protección CSRF para todos los endpoints
-app.use(csrfProtection);
-
-// Middleware de logging
-app.use(requestLogger);
-
 // Ruta raíz
 app.get('/', (req, res) => {
   res.json({ 
@@ -150,14 +100,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Endpoint para obtener token CSRF
-app.get('/api/csrf-token', getCsrfTokenEndpoint);
-
 // Rutas de contacto
 app.use('/api/contact', contactLimiter, contactRouter);
-
-// Rutas de sitemap y robots (dinámicos)
-app.use('/', sitemapRouter);
 
 // Servir página principal
 app.get('/', (req, res) => {
@@ -178,16 +122,12 @@ app.use(errorHandler);
 // Iniciar servidor
 const PORT_TO_USE = process.env.PORT || PORT;
 app.listen(PORT_TO_USE, () => {
-  logger.info(`🚀 Servidor corriendo en puerto ${PORT_TO_USE}`);
-  logger.info(`📧 Email configurado: ${process.env.EMAIL_TO || 'No configurado'}`);
-  logger.info(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
-  logger.info(`🔒 Seguridad: Winston logging, CSP, CSRF, Sanitización activados`);
+  console.log(`🚀 Servidor corriendo en puerto ${PORT_TO_USE}`);
+  console.log(`📧 Email configurado: ${process.env.EMAIL_USER || 'No configurado'}`);
+  console.log(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
   console.log(`\n📌 Endpoints disponibles:`);
   console.log(`   GET  /api/health - Estado del servidor`);
-  console.log(`   GET  /api/csrf-token - Obtener token CSRF`);
   console.log(`   POST /api/contact - Enviar formulario de contacto`);
-  console.log(`   GET  /sitemap.xml - Sitemap dinámico`);
-  console.log(`   GET  /robots.txt - Robots.txt dinámico`);
 });
 
 export default app;
