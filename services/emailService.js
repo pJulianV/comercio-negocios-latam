@@ -22,7 +22,8 @@ export const sendContactEmail = async (data) => {
     }
 
     const { nombre, empresa, email, telefono, mensaje, timestamp } = data;
-    const adminEmail = process.env.EMAIL_TO || 'info@comercionegocioslatam.com';
+    // Forzar destinatario a 'julianvargastrb@gmail.com' para pruebas
+    const adminEmail = ['julianvargastrb@gmail.com'];
 
     // HTML para email al administrador
     const adminHtml = `
