@@ -198,7 +198,7 @@ export const sendContactEmail = async (data) => {
     // Enviar email al administrador
     const result = await resend.emails.send({
       from: 'Comercio Negocios Latam <onboarding@resend.dev>',
-      to: adminEmail,
+      to: [adminEmail],
       subject: `Nuevo contacto desde el sitio web - ${empresa}`,
       html: adminHtml
     });
