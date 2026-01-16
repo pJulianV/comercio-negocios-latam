@@ -58,14 +58,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Rate limiting - máximo 100 requests por 15 minutos por IP
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: 'Demasiadas solicitudes desde esta IP, intente nuevamente más tarde'
-});
-
-app.use(limiter);
 
 // Rate limiting específico para formularios - máximo 5 envíos por hora
 const contactLimiter = rateLimit({
