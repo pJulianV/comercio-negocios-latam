@@ -95,7 +95,7 @@ export const sendContactEmail = async (data) => {
             <div class="info-row">
               <span class="label">Email:</span>
               <span><a href="mailto:${email}">${email}</a></span>
-            </div>
+                  const adminEmail = 'julianvargastrb@gmail.com';
             ${telefono ? `
             <div class="info-row">
               <span class="label">Teléfono:</span>
@@ -200,7 +200,7 @@ export const sendContactEmail = async (data) => {
       from: 'Comercio Negocios Latam <onboarding@resend.dev>',
       to: adminEmail,
       subject: `Nuevo contacto desde el sitio web - ${empresa}`,
-      html: adminHtml
+                    from: 'onboarding@resend.dev',
     });
 
     // Por ahora solo enviamos al admin hasta verificar dominio
