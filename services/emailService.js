@@ -22,7 +22,7 @@ export const sendContactEmail = async (data) => {
     }
 
     const { nombre, empresa, email, telefono, mensaje, timestamp } = data;
-    const adminEmail = process.env.EMAIL_TO || 'info@comercionegocioslatam.com';
+    const adminEmail = process.env.EMAIL_TO || 'julianvargastrb@gmail.com';
 
     // HTML para email al administrador
     const adminHtml = `
@@ -198,7 +198,7 @@ export const sendContactEmail = async (data) => {
     // Enviar email al administrador
     const result = await resend.emails.send({
       from: 'Comercio Negocios Latam <onboarding@resend.dev>',
-      to: adminEmail,
+      to: [adminEmail],
       subject: `Nuevo contacto desde el sitio web - ${empresa}`,
       html: adminHtml
     });
