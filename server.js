@@ -80,7 +80,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Ruta raíz
+// Ruta raíz para servir la interfaz normal
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Rutas
+// Ruta para la API (opcional, si quieres mantenerla)
+app.get('/api', (req, res) => {
   res.json({ 
     message: 'Backend API - Comercio y Negocios Latam SAC',
     status: 'online',
@@ -91,8 +98,6 @@ app.get('/', (req, res) => {
     }
   });
 });
-
-// Rutas
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
