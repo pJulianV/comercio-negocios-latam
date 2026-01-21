@@ -43,17 +43,10 @@ app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
 // Middleware para URLs limpias - servir .html sin extensión
 app.use((req, res, next) => {
-  if (req.path.indexOf('.') === -1 && req.path !== '/') {
-    // Si la ruta comienza con /pages/, remover el prefijo
-    const cleanPath = req.path.startsWith('/pages/') ? req.path.substring(7) : req.path;
-    const htmlPath = path.join(__dirname, 'pages', cleanPath + '.html');
+  if (req.path.startsWith('/pages/') && req.path.endsWith('.html')) {
+    const htmlPath = path.join(__dirname, req.path);
     if (fs.existsSync(htmlPath)) {
       return res.sendFile(htmlPath);
-    }
-    // También intentar sin el prefijo pages/
-    const rootHtmlPath = path.join(__dirname, req.path + '.html');
-    if (fs.existsSync(rootHtmlPath)) {
-      return res.sendFile(rootHtmlPath);
     }
   }
   next();
