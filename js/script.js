@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Smooth scroll para navegación
+// Solo aplicar smooth scroll si el href apunta a un id existente en la página
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    const targetId = this.getAttribute('href').replace('#', '');
+    const target = document.getElementById(targetId);
     if (target) {
+      e.preventDefault();
       target.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
