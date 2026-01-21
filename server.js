@@ -79,7 +79,6 @@ const contactLimiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Ruta raíz
 // Ruta raíz para servir la interfaz normal
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -109,10 +108,7 @@ app.get('/api/health', (req, res) => {
 // Rutas de contacto
 app.use('/api/contact', contactLimiter, contactRouter);
 
-// Servir página principal
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// ...existing code...
 
 // Manejo de rutas no encontradas
 app.use('*', (req, res) => {
