@@ -126,62 +126,6 @@ export const sendContactEmail = async (data) => {
 
 
     // Enviar email al administrador
-    const adminHtml = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <style>
-          body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
-          .header { background-color: #002156; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
-          .content { background-color: white; padding: 30px; border-radius: 0 0 5px 5px; }
-          .info-row { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-          .label { font-weight: bold; color: #002156; display: inline-block; min-width: 120px; }
-          .message-box { background-color: #f5f5f5; padding: 15px; border-left: 4px solid #c19e5c; margin-top: 20px; }
-          .footer { margin-top: 20px; text-align: center; font-size: 12px; color: #666; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h2>📧 Nuevo Mensaje de Contacto</h2>
-          </div>
-          <div class="content">
-            <div class="info-row">
-              <span class="label">Nombre:</span>
-              <span>${nombre}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Empresa:</span>
-              <span>${empresa}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Email:</span>
-              <span><a href="mailto:${email}">${email}</a></span>
-            </div>
-            ${telefono ? `
-            <div class="info-row">
-              <span class="label">Teléfono:</span>
-              <span><a href="tel:${telefono}">${telefono}</a></span>
-            </div>
-            ` : ''}
-            <div class="info-row">
-              <span class="label">Fecha:</span>
-              <span>${new Date(timestamp).toLocaleString('es-PE', { timeZone: 'America/Lima', dateStyle: 'full', timeStyle: 'short' })}</span>
-            </div>
-            <div class="message-box">
-              <h3 style="margin-top: 0; color: #002156;">Mensaje:</h3>
-              <p>${mensaje.replace(/\n/g, '<br>')}</p>
-            </div>
-          </div>
-          <div class="footer">
-            <p>Este mensaje fue enviado desde el formulario de contacto de<br>
-            <strong>Comercio y Negocios Latam SAC</strong></p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
     const result = await resend.emails.send({
       from: 'Comercio Negocios Latam <onboarding@resend.dev>',
       to: [adminEmail],
