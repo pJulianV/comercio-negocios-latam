@@ -35,19 +35,11 @@ app.use(helmet({
 
 
 // Servir archivos estáticos desde dist/ en producción
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'dist')));
-  app.use('/css', express.static(path.join(__dirname, 'dist/css')));
-  app.use('/js', express.static(path.join(__dirname, 'dist/js')));
-  app.use('/img', express.static(path.join(__dirname, 'dist/img')));
-  app.use('/pages', express.static(path.join(__dirname, 'dist/pages')));
-} else {
-  app.use(express.static(__dirname));
-  app.use('/css', express.static(path.join(__dirname, 'css')));
-  app.use('/js', express.static(path.join(__dirname, 'js')));
-  app.use('/img', express.static(path.join(__dirname, 'img')));
-  app.use('/pages', express.static(path.join(__dirname, 'pages')));
-}
+app.use(express.static(__dirname));
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
 // Middleware para URLs limpias - servir .html sin extensión
 app.use((req, res, next) => {
