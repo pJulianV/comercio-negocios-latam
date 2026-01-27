@@ -41,15 +41,33 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
-// Middleware para URLs limpias - servir .html sin extensión
-app.use((req, res, next) => {
-  if (req.path.startsWith('/pages/') && req.path.endsWith('.html')) {
-    const htmlPath = path.join(__dirname, req.path);
-    if (fs.existsSync(htmlPath)) {
-      return res.sendFile(htmlPath);
-    }
+
+// Middleware para servir cualquier HTML directamente (soporta rutas limpias y con .html)
+app.get(['/', '/index', '/index.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Servir páginas HTML en /pages y /en/pages
+app.get(['/pages/:file', '/pages/:file.html'], (req, res, next) => {
+  const file = req.params.file.replace('.html', '');
+  const htmlPath = path.join(__dirname, 'pages', `${file}.html`);
+  if (fs.existsSync(htmlPath)) {
+    return res.sendFile(htmlPath);
   }
   next();
+});
+app.get(['/en/pages/:file', '/en/pages/:file.html'], (req, res, next) => {
+  const file = req.params.file.replace('.html', '');
+  const htmlPath = path.join(__dirname, 'en', 'pages', `${file}.html`);
+  if (fs.existsSync(htmlPath)) {
+    return res.sendFile(htmlPath);
+  }
+  next();
+});
+
+// Fallback: si la ruta no es API ni asset, devolver index.html (SPA)
+app.get(/^\/(?!api|js|css|img|services|utils|tests|scripts|middleware|routes|logs|docs|en|robots\.txt|sitemap\.xml|manifest\.json|sw\.js|offline\.html|favicon\.ico).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 
@@ -95,12 +113,17 @@ app.use('/api/contact', contactLimiter, contactRouter);
 
 // ...existing code...
 
-// Manejo de rutas no encontradas
-app.use('*', (req, res) => {
-  res.status(404).json({ 
-    error: 'Ruta no encontrada',
-    path: req.originalUrl 
-  });
+
+// Manejo de rutas no encontradas para API y archivos
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith('/api/')) {
+    return res.status(404).json({ 
+      error: 'Ruta no encontrada',
+      path: req.originalUrl 
+    });
+  }
+  // Para todo lo demás, fallback a index.html (SPA)
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Manejo de errores global
