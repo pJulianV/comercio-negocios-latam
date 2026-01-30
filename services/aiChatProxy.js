@@ -16,13 +16,12 @@ router.post('/', async (req, res) => {
     const hfRes = await fetch(HF_API_URL, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${HF_TOKEN}`,
+          { role: 'system', content: `Eres el asistente virtual oficial de Comercio y Negocios Latam SAC. 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: HF_MODEL,
         messages: [
-          { role: 'system', content: 'Eres un asistente virtual para la página Comercio y Negocios Latam SAC. Responde solo con información relevante sobre la empresa, sus servicios, valores, contacto y temas relacionados. No respondas sobre temas externos.' },
+          { role: 'system', content: 'Eres un asistente virtual para la página Comercio y Negocios Latam SAC. Si el usuario pregunta sobre temas externos, redirige la conversación y ofrece recomendaciones o servicios de la empresa que puedan ayudarle, relacionando su consulta con lo que ofrece la empresa. Ejemplo: si preguntan sobre inversión en el exterior, sugiere los servicios de expansión internacional, asesoría financiera, etc. Responde siempre de forma informativa y útil, enfocándote en los servicios, valores, contacto y temas relacionados con la empresa.' },
           { role: 'user', content: prompt }
         ]
       })
