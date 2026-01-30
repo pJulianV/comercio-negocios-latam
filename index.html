@@ -291,6 +291,7 @@
     const aiIcon = document.getElementById('ai-toggle-icon');
     const aiInput = aiWidget.querySelector('input[type="text"]');
     const aiSend = aiWidget.querySelector('button[type="submit"]');
+    const aiChatArea = aiWidget.querySelector('div[style*="overflow-y: auto"]');
 
     // Estado: oculto por defecto
     aiWidget.style.display = 'none';
@@ -328,6 +329,63 @@
       aiBtn.setAttribute('aria-label', 'Abrir asistente AI');
       aiOpen = false;
     });
+
+    // --- INTEGRACIÓN CON BACKEND PROXY ---
+    function appendMessage(content, sender = 'user') {
+      const msgDiv = document.createElement('div');
+      msgDiv.style.marginBottom = '12px';
+      msgDiv.innerHTML = `<div style=\"background: ${sender === 'user' ? '#dbeafe' : '#e6eaf3'}; color: #222; padding: 10px 14px; border-radius: 12px 12px 12px 4px; max-width: 80%; margin-bottom: 4px; font-size: 15px; float: ${sender === 'user' ? 'right' : 'left'}; clear: both;\">${content}</div>`;
+      aiChatArea.appendChild(msgDiv);
+      aiChatArea.scrollTop = aiChatArea.scrollHeight;
+    }
+
+    aiInput.disabled = true;
+    aiSend.disabled = true;
+    aiSend.style.cursor = 'not-allowed';
+
+    aiWidget.addEventListener('transitionend', function() {
+      if (aiWidget.style.display === 'flex') aiInput.focus();
+    });
+
+    // Habilitar input y botón cuando se abre el widget
+    aiBtn.addEventListener('click', function() {
+      if (aiOpen) {
+        aiInput.disabled = false;
+        aiSend.disabled = false;
+        aiSend.style.cursor = 'pointer';
+      }
+    });
+
+    aiWidget.querySelector('form').onsubmit = async function(e) {
+      e.preventDefault();
+      const prompt = aiInput.value.trim();
+      if (!prompt) return;
+      appendMessage(prompt, 'user');
+      aiInput.value = '';
+      aiInput.disabled = true;
+      aiSend.disabled = true;
+      aiSend.style.cursor = 'not-allowed';
+      // Llamada a backend proxy seguro
+      try {
+        const res = await fetch('/api/ai-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt })
+        });
+        const data = await res.json();
+        let aiText = 'Error en la respuesta AI';
+        if (data && data.result) {
+          aiText = data.result;
+        }
+        appendMessage(aiText, 'ai');
+      } catch (err) {
+        appendMessage('No se pudo conectar con el asistente AI.', 'ai');
+      }
+      aiInput.disabled = false;
+      aiSend.disabled = false;
+      aiSend.style.cursor = 'pointer';
+      aiInput.focus();
+    };
   </script>
 
   <!-- WhatsApp Widget Oficial -->
