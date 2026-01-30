@@ -1,8 +1,9 @@
 // services/aiChatProxy.js
 // Proxy seguro para Hugging Face Inference API
-const express = require('express');
+
+import express from 'express';
+import fetch from 'node-fetch';
 const router = express.Router();
-const fetch = require('node-fetch');
 
 const HF_TOKEN = process.env.HF_TOKEN; // Debe estar en variables de entorno
 const HF_API_URL = 'https://router.huggingface.co/v1/chat/completions';
