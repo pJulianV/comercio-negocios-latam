@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
       body: JSON.stringify({
         model: HF_MODEL,
         messages: [
+          { role: 'system', content: 'Eres un asistente virtual para la página Comercio y Negocios Latam SAC. Responde solo con información relevante sobre la empresa, sus servicios, valores, contacto y temas relacionados. No respondas sobre temas externos.' },
           { role: 'user', content: prompt }
         ]
       })
