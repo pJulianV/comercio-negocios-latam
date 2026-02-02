@@ -1,4 +1,21 @@
 @media (max-width: 600px) {
+  .core-grid {
+    display: block !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+  .core-card {
+    width: 100vw !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 0 1.2rem 0 !important;
+    border-radius: 0 !important;
+  }
+}
+@media (max-width: 600px) {
   .core-card-overlay {
     flex-direction: column !important;
     align-items: flex-start !important;
