@@ -1,3 +1,19 @@
+@media (max-width: 600px) {
+  .core-card-overlay {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    padding: 1.2rem !important;
+    gap: 1.2rem !important;
+  }
+  .core-card-content {
+    margin-bottom: 1.2rem !important;
+  }
+  .core-card-link {
+    align-self: flex-end !important;
+    margin-top: 0.5rem !important;
+  }
+}
 
 @import url('./components/header.css');
 @import url('./components/language-selector.css');
