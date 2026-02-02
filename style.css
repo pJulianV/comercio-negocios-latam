@@ -1,4 +1,24 @@
 @media (max-width: 600px) {
+  .core-card-overlay {
+    padding: 0.7rem !important;
+  }
+  .core-card-content {
+    font-size: 0.95rem !important;
+  }
+  .core-card h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.7rem !important;
+  }
+  .core-card p {
+    font-size: 0.92rem !important;
+    line-height: 1.4 !important;
+  }
+  .core-card-tag {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+@media (max-width: 600px) {
   .core-grid {
     display: block !important;
     width: 100vw !important;
