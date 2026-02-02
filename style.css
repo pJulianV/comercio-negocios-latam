@@ -1,4 +1,39 @@
 @media (max-width: 600px) {
+  header {
+    padding: 0 !important;
+    min-height: 48px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  }
+  .header-container {
+    padding: 0 0.5rem !important;
+    min-height: 48px !important;
+    height: 48px !important;
+  }
+  .logo-wrapper {
+    padding: 0.3rem 0 !important;
+  }
+  .logo {
+    max-width: 110px !important;
+  }
+  .hamburger {
+    width: 32px !important;
+    height: 32px !important;
+    margin-left: 0.5rem !important;
+  }
+  .hamburger span {
+    width: 20px !important;
+    height: 3px !important;
+    margin: 3px 0 !important;
+  }
+  .language-selector-wrapper {
+    padding-left: 0.2rem !important;
+  }
+  nav a {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.92rem !important;
+  }
+}
+@media (max-width: 600px) {
   .core-grid {
     display: block !important;
     width: 100vw !important;
