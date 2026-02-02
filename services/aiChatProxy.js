@@ -16,8 +16,8 @@ router.post('/', async (req, res) => {
     const hfRes = await fetch(HF_API_URL, {
       method: 'POST',
       headers: {
-          { role: 'system', content: `Eres el asistente virtual oficial de Comercio y Negocios Latam SAC. 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...(HF_TOKEN ? { Authorization: `Bearer ${HF_TOKEN}` } : {})
       },
       body: JSON.stringify({
         messages: [
