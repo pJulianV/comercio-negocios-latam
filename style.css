@@ -102,9 +102,10 @@ header {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 900px) {
+
+@media (max-width: 1200px) {
   .hamburger {
-    display: flex;
+    display: flex !important;
   }
   nav ul {
     position: absolute;
