@@ -16,40 +16,25 @@ router.post('/', async (req, res) => {
     const hfRes = await fetch(HF_API_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        ...(HF_TOKEN ? { Authorization: `Bearer ${HF_TOKEN}` } : {})
+        'Authorization': `Bearer ${HF_TOKEN}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        model: HF_MODEL,
         messages: [
-          { role: 'system', content: `Eres el asistente virtual oficial de Comercio y Negocios Latam SAC. Responde únicamente con información breve, concreta y real sobre la empresa, sus servicios, valores y datos de contacto. No inventes datos ni respondas sobre temas externos. Si no tienes información específica, responde de forma corta y honesta, por ejemplo: "No tengo ese dato, pero puedo ayudarte con información sobre nuestros servicios, valores o contacto." Ejemplo de respuesta correcta: "Comercio y Negocios Latam SAC es una empresa especializada en consultoría estratégica y desarrollo de negocios internacionales." Ejemplo de respuesta incorrecta: "No tengo información sobre fútbol." Mantén siempre un tono profesional y directo. Sé siempre breve y no agregues información innecesaria. 
-
-Información de contacto oficial:
-Dirección: San Isidro, Lima, Perú
-Email: info@cynlatam.com
-Teléfono: +51 969 406 930
-Horario de Atención: Lunes a Viernes: 9:00 AM - 6:00 PM, Sábados: 9:00 AM - 1:00 PM
-` },
+          { role: 'system', content: 'Eres el asistente virtual oficial de Comercio y Negocios Latam SAC. Responde únicamente con información breve, concreta y real sobre la empresa, sus servicios, valores y datos de contacto. No inventes datos ni respondas sobre temas externos. Si no tienes información específica, responde de forma corta y honesta, por ejemplo: "No tengo ese dato, pero puedo ayudarte con información sobre nuestros servicios, valores o contacto." Ejemplo de respuesta correcta: "Comercio y Negocios Latam SAC es una empresa especializada en consultoría estratégica y desarrollo de negocios internacionales." Ejemplo de respuesta incorrecta: "No tengo información sobre fútbol." Mantén siempre un tono profesional y directo. Sé siempre breve y no agregues información innecesaria. Información de contacto oficial: Dirección: San Isidro, Lima, Perú Email: info@cynlatam.com Teléfono: +51 969 406 930 Horario de Atención: Lunes a Viernes: 9:00 AM - 6:00 PM' },
           { role: 'user', content: prompt }
         ]
       })
     });
     const data = await hfRes.json();
-      // Log completo de la respuesta para depuración
-      console.log('Respuesta HuggingFace:', JSON.stringify(data, null, 2));
-      let result = 'Error en la respuesta AI';
-      if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-        result = data.choices[0].message.content;
-      } else if (data && data.error) {
-        // Si la API devuelve un error, mostrarlo
-        result = `Error HuggingFace: ${data.error}`;
-      } else {
-        // Mostrar la respuesta completa si no es la esperada
-        result = `Respuesta inesperada: ${JSON.stringify(data)}`;
-      }
-      res.json({ result });
+    let result = 'Error en la respuesta AI';
+    if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+      result = data.choices[0].message.content;
+    }
+    res.json({ result });
   } catch (err) {
-      console.error('Error al conectar con Hugging Face:', err);
-      res.status(500).json({ error: 'Error al conectar con Hugging Face', details: err.message });
+    res.status(500).json({ error: 'Error al conectar con Hugging Face' });
   }
 });
 
