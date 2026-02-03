@@ -34,13 +34,22 @@ Horario de Atención: Lunes a Viernes: 9:00 AM - 6:00 PM, Sábados: 9:00 AM - 1:
       })
     });
     const data = await hfRes.json();
-    let result = 'Error en la respuesta AI';
-    if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-      result = data.choices[0].message.content;
-    }
-    res.json({ result });
+      // Log completo de la respuesta para depuración
+      console.log('Respuesta HuggingFace:', JSON.stringify(data, null, 2));
+      let result = 'Error en la respuesta AI';
+      if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+        result = data.choices[0].message.content;
+      } else if (data && data.error) {
+        // Si la API devuelve un error, mostrarlo
+        result = `Error HuggingFace: ${data.error}`;
+      } else {
+        // Mostrar la respuesta completa si no es la esperada
+        result = `Respuesta inesperada: ${JSON.stringify(data)}`;
+      }
+      res.json({ result });
   } catch (err) {
-    res.status(500).json({ error: 'Error al conectar con Hugging Face' });
+      console.error('Error al conectar con Hugging Face:', err);
+      res.status(500).json({ error: 'Error al conectar con Hugging Face', details: err.message });
   }
 });
 
