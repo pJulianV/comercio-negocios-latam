@@ -10,6 +10,7 @@
   <!-- Hreflang for SEO -->
   <link rel="alternate" hreflang="es" href="https://cynlatam.com/" />
   <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/" />
+  <link rel="alternate" hreflang="de" href="https://cynlatam.com/de/" />
   <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/" />
 </head>
 <body>
@@ -26,9 +27,10 @@
           <li><a href="pages/contact.html">Contact Us</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector" aria-label="Language selector" onchange="window.location.href = this.value === 'es' ? '../index.html' : 'index.html'">
+          <select id="language-selector" class="language-selector" aria-label="Language selector" onchange="if(this.value==='es') window.location.href='../index.html'; else if(this.value==='en') window.location.href='index.html'; else window.location.href='../de/index.html'">
             <option value="es">🇪🇸 Español</option>
             <option value="en" selected>🇺🇸 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
           </select>
         </div>
       </nav>

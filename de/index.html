@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handel und Geschäfte Latam SAC</title>
+  <link rel="icon" type="image/jpeg" href="../img/Icon.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <!-- Hreflang for SEO -->
+  <link rel="alternate" hreflang="es" href="https://cynlatam.com/" />
+  <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/" />
+  <link rel="alternate" hreflang="de" href="https://cynlatam.com/de/" />
+  <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/" />
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-wrapper">
+        <img src="../img/logoSimple.png" alt="Handel und Geschäfte Latam SAC Logo" class="logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Navigationsmenü öffnen" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul id="main-nav">
+          <li><a href="#home">Startseite</a></li>
+          <li><a href="pages/about-us.html">Über uns</a></li>
+          <li><a href="#services">Dienstleistungen</a></li>
+          <li><a href="pages/contact.html">Kontakt</a></li>
+        </ul>
+        <div class="language-selector-wrapper">
+          <select id="language-selector" class="language-selector" aria-label="Sprachauswahl" onchange="if(this.value==='es') window.location.href='../index.html'; else if(this.value==='en') window.location.href='../en/index.html'; else window.location.href='index.html'">
+            <option value="es">🇪🇸 Español</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="de" selected>🇩🇪 Deutsch</option>
+          </select>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Handel und Geschäfte <span class="highlight">Latam SAC</span></h1>
+        <p class="hero-subtitle">
+          Wir entwickeln Chancen,<br>
+          wir treiben Wachstum an.
+        </p>
+        <p class="hero-tagline">Ein Unternehmen der CASNU-Gruppe</p>
+        <a href="pages/contact.html" class="cta-button">Kontaktieren Sie uns</a>
+      </div>
+      <div class="hero-image">
+        <img src="../img/SanIsidroLima.jpg" alt="San Isidro Lima Büros">
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="about-us">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="../img/economic.png" alt="Wertversprechen" onerror="this.onerror=null;this.src='../img/placeholder.jpg'">
+        </div>
+        <div class="about-content">
+          <span class="about-tag">UNTERNEHMERISCHE EXZELLENZ</span>
+          <h2>Wertversprechen</h2>
+          <p>Spezialisiert auf die Entwicklung, Beschleunigung und Expansion von Unternehmen auf nationalen und internationalen Märkten durch Handelsintelligenz, Expansionsstrategien und umfassendes Projektmanagement.</p>
+          <a href="pages/about-us.html" class="about-button">Mehr erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="core">
+      <div class="core-intro">
+        <h2>Markenkern</h2>
+        <p>Umfassende Lösungen, die das Wachstum und die Expansion Ihres Unternehmens auf nationalen und internationalen Märkten vorantreiben.</p>
+      </div>
+      
+      <div class="core-grid">
+        <div class="core-card" style="background-image: url('../img/DesarrolloNeg.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Geschäftsentwicklung</h3>
+              <p>Strategische Geschäftsentwicklung zur Identifizierung und Entwicklung von Handelsmöglichkeiten</p>
+            </div>
+            <a href="pages/business-development.html" class="core-card-link" aria-label="Mehr Informationen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="core-card" style="background-image: url('../img/InteligenciaComercial.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Handelsintelligenz</h3>
+              <p>Marktforschung und Datenanalyse für fundierte Entscheidungen</p>
+            </div>
+            <a href="pages/commercial-intelligence.html" class="core-card-link" aria-label="Mehr Informationen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="core-card" style="background-image: url('../img/ExpancionIntern.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Internationale Expansion</h3>
+              <p>Eintritts- und Wachstumsstrategien auf internationalen Märkten</p>
+            </div>
+            <a href="pages/international-expansion.html" class="core-card-link" aria-label="Mehr Informationen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="core-card" style="background-image: url('../img/Consultoria.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Strategische Beratung</h3>
+              <p>Spezialisierte Beratung zur Optimierung von Handelsstrategien</p>
+            </div>
+            <a href="pages/strategic-consulting.html" class="core-card-link" aria-label="Mehr Informationen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="core-card" style="background-image: url('../img/Gestion.jpg');">
+          <div class="core-card-overlay">
+            <div class="core-card-content">
+              <h3>Projektmanagement</h3>
+              <p>Umfassende Verwaltung von Geschäftsprojekten mit Fokus auf Ergebnisse</p>
+            </div>
+            <a href="pages/project-management.html" class="core-card-link" aria-label="Mehr Informationen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Lösungen</h4>
+        <ul>
+          <li><a href="pages/business-development.html">Geschäftsentwicklung</a></li>
+          <li><a href="pages/commercial-intelligence.html">Handelsintelligenz</a></li>
+          <li><a href="pages/international-expansion.html">Internationale Expansion</a></li>
+          <li><a href="pages/strategic-consulting.html">Strategische Beratung</a></li>
+          <li><a href="pages/project-management.html">Projektmanagement</a></li>
+          <li><a href="pages/financial-advisory.html">Finanzberatung</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Sektoren</h4>
+        <ul>
+          <li><a href="pages/sectors.html#technology">Technologie</a></li>
+          <li><a href="pages/sectors.html#manufacturing">Fertigung</a></li>
+          <li><a href="pages/sectors.html#retail">Einzelhandel</a></li>
+          <li><a href="pages/sectors.html#services">Dienstleistungen</a></li>
+          <li><a href="pages/sectors.html#export">Export</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Ressourcen</h4>
+        <ul>
+          <li><a href="pages/insights.html">Einblicke</a></li>
+          <li><a href="pages/success-cases.html">Erfolgsgeschichten</a></li>
+          <li><a href="pages/insights.html#blog">Blog</a></li>
+          <li><a href="pages/insights.html#events">Veranstaltungen</a></li>
+          <li><a href="pages/insights.html#news">Nachrichten</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Unternehmen</h4>
+        <ul>
+          <li><a href="pages/about-us.html">Über uns</a></li>
+          <li><a href="pages/team.html">Team</a></li>
+          <li><a href="pages/careers.html">Karriere</a></li>
+          <li><a href="pages/contact.html">Kontakt</a></li>
+          <li><a href="pages/location.html">Standort</a></li>
+        </ul>
+      </div>
+            
+      <div class="footer-section footer-contact">
+        <h4>Kontakt</h4>
+        <p>San Isidro, Lima, Peru</p>
+        <p>info@cynlatam.com</p>
+        <p>+51 969 406 930</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><i class="social-icon">in</i></a>
+          <a href="#" aria-label="Twitter"><i class="social-icon">tw</i></a>
+          <a href="#" aria-label="Facebook"><i class="social-icon">fb</i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 Handel und Geschäfte Latam SAC. Alle Rechte vorbehalten.</p>
+        <div class="footer-links">
+          <a href="pages/policies.html#privacy">Datenschutz</a>
+          <a href="pages/policies.html#terms">Nutzungsbedingungen</a>
+          <a href="pages/policies.html#accessibility">Barrierefreiheit</a>
+          <a href="pages/policies.html#cookies">Cookies</a>
+        </div>
+      </div>
+      <p class="tagline">Unternehmen verbinden, Grenzen erweitern</p>
+      <p class="grupo-casnu">Ein Unternehmen der CASNU-Gruppe</p>
+    </div>
+  </footer>
+  
+  <script src="../js/script.js"></script>
+</body>
+</html>
