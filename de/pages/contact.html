@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt - Handel und Geschäfte Latam SAC</title>
+  <link rel="icon" type="image/jpeg" href="../../img/Icon.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+    <!-- <script src="../../js/formValidation.js" defer></script> -->
+
+  
+  <!-- Hreflang for SEO -->
+  <link rel="alternate" hreflang="es" href="https://cynlatam.com/pages/contacto" />
+  <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/pages/contact" />
+  <link rel="alternate" hreflang="de" href="https://cynlatam.com/de/pages/contact" />
+  <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/pages/contacto" />
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-wrapper">
+        <a href="../index.html">
+          <img src="../../img/logoSimple.png" alt="Handel und Geschäfte Latam SAC Logo" class="logo">
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Startseite</a></li>
+          <li><a href="../index.html#about">Über uns</a></li>
+          <li><a href="../index.html#services">Dienstleistungen</a></li>
+          <li><a href="contact">Kontakt</a></li>
+        </ul>
+        <div class="language-selector-wrapper">
+          <select id="language-selector" class="language-selector" aria-label="Sprachauswahl" onchange="window.location.href = this.value === 'es' ? '../../pages/contacto' : this.value === 'en' ? '../../en/pages/contact' : 'contact'">
+            <option value="es">🇪🇸 Español</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="de" selected>🇩🇪 Deutsch</option>
+          </select>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="contact" class="contacto-page">
+      <div class="contacto-container">
+        <h1>Kontaktieren Sie uns</h1>
+        <p class="contacto-intro">Wir sind hier, um Ihr Geschäft voranzubringen</p>
+        
+        <div class="contacto-content">
+          <div class="contacto-info">
+            <h3>Kontaktinformationen</h3>
+            <div class="info-item">
+              <strong>ADRESSE:</strong>
+              <p>San Isidro, Lima, Peru</p>
+            </div>
+            <div class="info-item">
+              <strong>E-MAIL:</strong>
+                <p><a href="mailto:julianvargastrb@gmail.com">julianvargastrb@gmail.com</a></p>
+            </div>
+            <div class="info-item">
+              <strong>TELEFON:</strong>
+              <p><a href="tel:+51969406930">+51 969 406 930</a></p>
+            </div>
+            
+            <div class="office-hours">
+              <h4>Geschäftszeiten</h4>
+              <p>Montag bis Freitag: 9:00 - 18:00 Uhr</p>
+              <p>Samstag: 9:00 - 13:00 Uhr</p>
+            </div>
+          </div>
+          
+          <div class="contacto-form-wrapper">
+            <h3>Senden Sie uns eine Nachricht</h3>
+            <form class="contacto-form">
+              <!-- Message container for feedback -->
+              <div id="formMessage" class="form-message"></div>
+              <div class="form-group">
+                <label for="nombre">NAME</label>
+                <input type="text" id="nombre" name="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="empresa">UNTERNEHMEN</label>
+                <input type="text" id="empresa" name="empresa" required>
+              </div>
+              <div class="form-group">
+                <label for="email">E-MAIL</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">TELEFON</label>
+                <input type="tel" id="telefono" name="telefono">
+              </div>
+              <div class="form-group">
+                <label for="mensaje">NACHRICHT</label>
+                <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+              </div>
+              <button type="submit" class="submit-button"><span class="btn-text">Nachricht senden</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>LÖSUNGEN</h4>
+        <ul>
+          <li><a href="business-development.html">Geschäftsentwicklung</a></li>
+          <li><a href="commercial-intelligence.html">Handelsintelligenz</a></li>
+          <li><a href="international-expansion.html">Internationale Expansion</a></li>
+          <li><a href="strategic-consulting.html">Strategische Beratung</a></li>
+          <li><a href="project-management.html">Projektmanagement</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>SEKTOREN</h4>
+        <ul>
+          <li><a href="#">Technologie</a></li>
+          <li><a href="#">Fertigung</a></li>
+          <li><a href="#">Einzelhandel</a></li>
+          <li><a href="#">Dienstleistungen</a></li>
+          <li><a href="#">Export</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>RESSOURCEN</h4>
+        <ul>
+          <li><a href="insights.html">Einblicke</a></li>
+          <li><a href="success-cases.html">Erfolgsgeschichten</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Veranstaltungen</a></li>
+          <li><a href="#">Nachrichten</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>UNTERNEHMEN</h4>
+        <ul>
+          <li><a href="about-us.html">Über uns</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="careers.html">Karriere</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+          <li><a href="location.html">Standort</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section footer-contact">
+        <h4>KONTAKT</h4>
+        <p>San Isidro, Lima, Peru</p>
+        <p>info@cynlatam.com</p>
+        <p>+51 969 406 930</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><i class="social-icon">in</i></a>
+          <a href="#" aria-label="Twitter"><i class="social-icon">tw</i></a>
+          <a href="#" aria-label="Facebook"><i class="social-icon">fb</i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 Handel und Geschäfte Latam SAC. <span>Alle Rechte vorbehalten</span>.</p>
+        <div class="footer-links">
+          <a href="policies.html#privacy">Datenschutz</a>
+          <a href="policies.html#terms">Nutzungsbedingungen</a>
+          <a href="policies.html#accessibility">Barrierefreiheit</a>
+          <a href="policies.html#cookies">Cookies</a>
+        </div>
+      </div>
+      <p class="tagline">Unternehmen verbinden, Grenzen erweitern</p>
+    </div>
+  </footer>
+  
+  <script src="../../js/script.js"></script>
+</body>
+</html>
