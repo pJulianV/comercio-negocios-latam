@@ -5,10 +5,8 @@ import helmet from 'helmet';
 import contactRouter from '../../routes/contact.js';
 import { errorHandler } from '../../middleware/errorHandler.js';
 import * as emailService from '../../services/emailService.js';
-import { jest } from '@jest/globals';
 
-// Mock del email service
-jest.unstable_mockModule('../../services/emailService.js', () => ({
+jest.mock('../../services/emailService.js', () => ({
   sendContactEmail: jest.fn(),
 }));
 

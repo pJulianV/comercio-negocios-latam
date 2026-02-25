@@ -1,0 +1,95 @@
+{
+  "header": {
+    "menu": {
+      "home": "Startseite",
+      "about": "Über uns",
+      "services": "Dienstleistungen",
+      "contact": "Kontakt"
+    },
+    "language": "Sprache"
+  },
+  "hero": {
+    "title": "Geschäftsentwicklung",
+    "subtitle": "Handelsintelligenz und strategische Expansion in Lateinamerika",
+    "cta": "Unsere Dienstleistungen entdecken"
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Umfassende Lösungen für Ihr Unternehmenswachstum"
+  },
+  "common": {
+    "readMore": "Mehr lesen",
+    "contactUs": "Kontaktieren Sie uns",
+    "learnMore": "Mehr erfahren",
+    "getStarted": "Loslegen",
+    "requestConsultation": "Beratung anfragen",
+    "requestAnalysis": "Analyse anfragen",
+    "scheduleMeeting": "Meeting vereinbaren",
+    "startProject": "Projekt starten",
+    "startExpansion": "Expansion beginnen"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir sind hier, um Ihr Geschäft voranzubringen",
+    "info": {
+      "address": "ADRESSE:",
+      "addressLine1": "San Isidro, Lima, Peru",
+      "email": "E-MAIL:",
+      "phone": "TELEFON:"
+    },
+    "hours": {
+      "title": "Geschäftszeiten",
+      "weekdays": "Montag bis Freitag: 9:00 - 18:00 Uhr",
+      "saturday": "Samstag: 9:00 - 13:00 Uhr"
+    },
+    "form": {
+      "name": "NAME",
+      "company": "UNTERNEHMEN",
+      "email": "E-MAIL",
+      "phone": "TELEFON",
+      "message": "NACHRICHT",
+      "submit": "NACHRICHT SENDEN"
+    }
+  },
+  "footer": {
+    "solutions": {
+      "title": "LÖSUNGEN",
+      "businessDevelopment": "Geschäftsentwicklung",
+      "commercialIntelligence": "Handelsintelligenz",
+      "internationalExpansion": "Internationale Expansion",
+      "strategicConsulting": "Strategische Beratung",
+      "projectManagement": "Projektmanagement"
+    },
+    "sectors": {
+      "title": "SEKTOREN",
+      "technology": "Technologie",
+      "manufacturing": "Fertigung",
+      "retail": "Einzelhandel",
+      "services": "Dienstleistungen",
+      "export": "Export"
+    },
+    "resources": {
+      "title": "RESSOURCEN",
+      "insights": "Einblicke",
+      "successCases": "Erfolgsgeschichten",
+      "blog": "Blog",
+      "events": "Veranstaltungen",
+      "news": "Nachrichten"
+    },
+    "company": {
+      "title": "UNTERNEHMEN",
+      "aboutUs": "Über uns",
+      "team": "Team",
+      "careers": "Karriere",
+      "contact": "Kontakt",
+      "location": "Standort"
+    },
+    "contactUs": {
+      "title": "KONTAKT",
+      "location": "San Isidro, Lima, Peru"
+    },
+    "allRightsReserved": "Alle Rechte vorbehalten",
+    "tagline": "Unternehmen verbinden, Grenzen erweitern",
+    "groupCasnu": "Ein Unternehmen der CASNU-Gruppe"
+  }
+}

@@ -1,6 +1,7 @@
+/** @type {import('jest').Config} */
 export default {
-  // Usar node como entorno de test
-  testEnvironment: 'node',
+  // Usar jsdom como entorno de test
+  testEnvironment: 'jsdom',
 
   // Patrón para encontrar archivos de test
   testMatch: ['**/tests/**/*.test.js', '**/tests/**/*.spec.js'],
@@ -35,8 +36,13 @@ export default {
   // Setup files
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
 
-  // Transform vacío para ES modules
+  // Soporte para ESModules
   transform: {},
+  
+  // Configuración para módulos ES
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 
   // Extensiones de archivos a procesar
   moduleFileExtensions: ['js', 'json'],
@@ -52,9 +58,5 @@ export default {
 
   // Restore mocks entre tests
   restoreMocks: true,
-
-  // Configuración para módulos ES
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-  },
 };
+

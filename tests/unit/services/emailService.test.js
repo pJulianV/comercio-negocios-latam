@@ -1,9 +1,7 @@
 import { sendContactEmail } from '../../../services/emailService.js';
 import { Resend } from 'resend';
-import { jest } from '@jest/globals';
 
-// Mock de Resend
-jest.unstable_mockModule('resend', () => ({
+jest.mock('resend', () => ({
   Resend: jest.fn(),
 }));
 

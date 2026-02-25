@@ -2,10 +2,8 @@ import request from 'supertest';
 import express from 'express';
 import contactRouter from '../../../routes/contact.js';
 import * as emailService from '../../../services/emailService.js';
-import { jest } from '@jest/globals';
 
-// Mock del email service
-jest.unstable_mockModule('../../../services/emailService.js', () => ({
+jest.mock('../../../services/emailService.js', () => ({
   sendContactEmail: jest.fn(),
 }));
 

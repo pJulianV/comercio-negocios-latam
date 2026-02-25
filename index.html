@@ -34,6 +34,7 @@
   <!-- Hreflang for SEO -->
   <link rel="alternate" hreflang="es" href="https://cynlatam.com/" />
   <link rel="alternate" hreflang="en" href="https://cynlatam.com/en/" />
+  <link rel="alternate" hreflang="de" href="https://cynlatam.com/de/" />
   <link rel="alternate" hreflang="x-default" href="https://cynlatam.com/" />
 </head>
 <body>
@@ -78,9 +79,10 @@
           <li><a href="pages/contacto.html">Contáctanos</a></li>
         </ul>
         <div class="language-selector-wrapper">
-          <select id="language-selector" class="language-selector" aria-label="Selector de idioma" onchange="window.location.href = this.value === 'es' ? 'index.html' : 'en/index.html'">
+          <select id="language-selector" class="language-selector" aria-label="Selector de idioma" onchange="if(this.value==='es') window.location.href='index.html'; else if(this.value==='en') window.location.href='en/index.html'; else window.location.href='de/index.html'">
             <option value="es" selected>🇪🇸 Español</option>
             <option value="en">🇺🇸 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
           </select>
         </div>
       </nav>
@@ -210,6 +212,41 @@
         </div>
       </div>
     </section>
+
+    <!-- Botón destacado para Gestión Pública debajo del core de la marca -->
+    <div style="display: flex; justify-content: center; margin: 48px 0 0 0;">
+      <a href="pages/gestion-publica.html" 
+         style="
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           width: 100%;
+           max-width: 540px;
+           min-height: 120px;
+           background: linear-gradient(rgba(0,33,86,0.78), rgba(0,33,86,0.78)), url('img/gestion-publica.jpg') center/cover no-repeat;
+           color: #fff;
+           font-weight: 700;
+           font-size: 1.35rem;
+           border-radius: 18px;
+           text-decoration: none;
+           box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+           transition: transform 0.18s, box-shadow 0.18s;
+           margin: 0 auto;
+           padding: 32px 24px;
+           position: relative;
+           overflow: hidden;
+         "
+         onmouseover="this.style.transform='scale(1.025)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.18)';" 
+         onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.13)';"
+      >
+        <span style="z-index:2; position:relative; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">
+          <svg style="vertical-align: middle; margin-right: 16px; margin-bottom: 6px;" width="36" height="36" fill="#c19e5c" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+          Gestión Pública y Contrataciones Estatales
+        </span>
+        <span style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(90deg,rgba(0,33,86,0.18) 0%,rgba(193,158,92,0.13) 100%); z-index:1;"></span>
+      </a>
+    </div>
+    <div style="height: 36px;"></div>
   </main>
 
   <footer>

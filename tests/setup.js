@@ -1,8 +1,8 @@
 // Setup global para todos los tests
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 
 // Cargar variables de entorno de test
-config({ path: '.env.test' });
+dotenv.config({ path: '.env.test' });
 
 // Variables de entorno por defecto para tests
 process.env.NODE_ENV = 'test';

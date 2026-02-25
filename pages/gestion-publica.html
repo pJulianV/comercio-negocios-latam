@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión Pública y Contrataciones</title>
+  <link rel="icon" type="image/jpeg" href="../img/Icon.jpeg">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/Icon.jpeg">
+  <link rel="apple-touch-icon" href="../img/Icon.jpeg">
+  <meta name="description" content="Gestión pública, licitaciones y contrataciones estatales. Especialistas en contratos menores a 8 UIT.">
+  <meta name="keywords" content="gestión pública, licitaciones, contrataciones estatales, 8 UIT, consultoría">
+  <meta name="author" content="Comercio y Negocios Latam SAC">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Botón flotante para abrir/minimizar el AI (junto a WhatsApp) -->
+  <button id="ai-toggle-btn" aria-label="Abrir asistente AI" style="position: fixed; bottom: 100px; right: 90px; width: 56px; height: 56px; border-radius: 50%; background: #002156; color: #fff; border: none; box-shadow: 0 4px 16px rgba(0,0,0,0.18); z-index: 10000; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: background 0.2s;">
+    <span id="ai-toggle-icon" style="display: block;">🤖</span>
+  </button>
+  <!-- Chatbot AI UI (solo interfaz, sin funcionalidad) -->
+  <div id="ai-chatbot-widget" style="position: fixed; bottom: 100px; right: 24px; width: 340px; max-width: 90vw; z-index: 9999; font-family: 'Poppins', Arial, sans-serif; box-shadow: 0 4px 24px rgba(0,0,0,0.18); border-radius: 16px 16px 8px 8px; background: #fff; display: none; flex-direction: column;">
+    <div style="background: #002156; color: #fff; padding: 12px 16px; border-radius: 16px 16px 0 0; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-weight: 600;">Asistente AI</span>
+      <button style="background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;" onclick="document.getElementById('ai-chatbot-widget').style.display='none'">×</button>
+    </div>
+    <div style="flex: 1; padding: 16px; overflow-y: auto; min-height: 120px; max-height: 260px; background: #f7f7f7;">
+      <div style="margin-bottom: 12px;">
+        <div style="background: #e6eaf3; color: #222; padding: 10px 14px; border-radius: 12px 12px 12px 4px; max-width: 80%; margin-bottom: 4px; font-size: 15px;">¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?</div>
+      </div>
+      <!-- Aquí aparecerán los mensajes del usuario y AI -->
+    </div>
+    <form style="display: flex; border-top: 1px solid #eee; background: #fff;" onsubmit="return false;">
+      <input type="text" placeholder="Escribe tu mensaje..." style="flex: 1; border: none; padding: 12px; font-size: 15px; outline: none; border-radius: 0 0 0 8px;" disabled>
+      <button type="submit" style="background: #002156; color: #fff; border: none; padding: 0 18px; font-size: 16px; border-radius: 0 0 8px 0; cursor: not-allowed;" disabled>Enviar</button>
+    </form>
+    <div style="font-size: 11px; color: #888; text-align: right; padding: 4px 10px 6px 0;">Demo UI - Sin funcionalidad</div>
+  </div>
+  <header>
+    <div class="header-container">
+      <div class="logo-wrapper">
+        <img src="../img/logoSimple.png" alt="Comercio y Negocios Latam SAC Logo" class="logo">
+      </div>
+      <button class="hamburger" id="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul id="main-nav">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="../index.html#servicios">Servicios</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+        <div class="language-selector-wrapper">
+          <select id="language-selector" class="language-selector" aria-label="Selector de idioma" onchange="if(this.value==='es') window.location.href='../index.html'; else if(this.value==='en') window.location.href='../en/index.html'; else window.location.href='../de/index.html'">
+            <option value="es" selected>🇪🇸 Español</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
+          </select>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="gestion-publica" style="background: #f7f8fa; padding: 3rem 0;">
+      <div class="container" style="max-width: 1100px; margin: 0 auto;">
+        <h1 style="color: #002156; text-align: center; font-size: 2.4rem; margin-bottom: 1.2rem;">Gestión Pública y Contrataciones Estatales</h1>
+        <p style="text-align: center; color: #444; font-size: 1.15rem; max-width: 700px; margin: 0 auto 2.5rem auto;">Accede a nuestra sección especializada en gestión pública, licitaciones y contrataciones estatales. Somos especialistas en contratos menores a 8 UIT y te ayudamos a ganar con el Estado.</p>
+        <div class="publica-grid" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center;">
+          <div class="publica-card" style="background: #fff; border-radius: 16px; box-shadow: 0 4px 18px rgba(0,33,86,0.07); padding: 2.2rem 2rem 2rem 2rem; max-width: 350px; min-width: 270px; text-align: center; border: 1.5px solid #e6e6e6;">
+            <img src="../img/handshake-pro.jpg" alt="Gana con el Estado" style="max-width:90px; margin-bottom:18px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,33,86,0.08);">
+            <h2 style="color: #002156; font-size: 1.35rem; margin-bottom: 0.7rem;">Gana con el Estado</h2>
+            <p style="color: #333; font-size: 1.05rem;">Te asesoramos en todo el proceso de contrataciones públicas, desde la identificación de oportunidades hasta la presentación de propuestas ganadoras.</p>
+          </div>
+          <div class="publica-card" style="background: #fff; border-radius: 16px; box-shadow: 0 4px 18px rgba(0,33,86,0.07); padding: 2.2rem 2rem 2rem 2rem; max-width: 350px; min-width: 270px; text-align: center; border: 1.5px solid #e6e6e6;">
+            <img src="../img/logoAcl.png" alt="Contratos menores a 8 UIT" style="max-width:90px; margin-bottom:18px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,33,86,0.08); background: #f7f7f7;">
+            <h2 style="color: #002156; font-size: 1.35rem; margin-bottom: 0.7rem;">Especialistas en Contratos Menores a 8 UIT</h2>
+            <p style="color: #333; font-size: 1.05rem;">Maximiza tus oportunidades con procesos simplificados y asesoría experta para contratos menores a 8 UIT.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="../index.html" class="cta-button">Volver a la Página Principal</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer style="background: #002156; color: #EEF0ED; margin-top: 0; border-top: 3px solid #c19e5c;">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Soluciones</h4>
+        <ul>
+          <li><a href="desarrollo-negocios.html">Desarrollo de Negocios</a></li>
+          <li><a href="inteligencia-comercial.html">Inteligencia Comercial</a></li>
+          <li><a href="expansion-internacional.html">Expansión Internacional</a></li>
+          <li><a href="consultoria-estrategica.html">Consultoría Estratégica</a></li>
+          <li><a href="gestion-proyectos.html">Gestión de Proyectos</a></li>
+          <li><a href="asesoria-financiera.html">Asesoría Financiera</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Sectores</h4>
+        <ul>
+          <li><a href="sectores#tecnologia">Tecnología</a></li>
+          <li><a href="sectores#manufactura">Manufactura</a></li>
+          <li><a href="sectores#retail">Retail</a></li>
+          <li><a href="sectores#servicios">Servicios</a></li>
+          <li><a href="sectores#exportacion">Exportación</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="insights">Insights</a></li>
+          <li><a href="casos-exito">Casos de Éxito</a></li>
+          <li><a href="insights#blog">Blog</a></li>
+          <li><a href="insights#eventos">Eventos</a></li>
+          <li><a href="insights#noticias">Noticias</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="equipo.html">Equipo</a></li>
+          <li><a href="carreras.html">Carreras</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="ubicacion.html">Ubicación</a></li>
+        </ul>
+      </div>
+      <div class="footer-section footer-contact">
+        <h4>Contáctanos</h4>
+        <p>San Isidro, Lima, Perú</p>
+        <p>info@cynlatam.com</p>
+        <p>+51 969 406 930</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><i class="social-icon">in</i></a>
+          <a href="#" aria-label="Twitter"><i class="social-icon">tw</i></a>
+          <a href="#" aria-label="Facebook"><i class="social-icon">fb</i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 Comercio y Negocios Latam SAC. Todos los derechos reservados.</p>
+        <div class="footer-links">
+          <a href="politicas.html#privacidad">Privacidad</a>
+          <a href="politicas.html#terminos">Términos de Uso</a>
+          <a href="politicas.html#accesibilidad">Accesibilidad</a>
+          <a href="politicas.html#cookies">Cookies</a>
+        </div>
+      </div>
+      <p class="tagline">Conectando negocios, expandiendo fronteras</p>
+      <p class="grupo-casnu">Una empresa del Grupo CASNU</p>
+    </div>
+  </footer>
+  <script type="module" src="../js/script.js"></script>
+  <script>
+    // Botón flotante para abrir/minimizar el chat AI
+    const aiBtn = document.getElementById('ai-toggle-btn');
+    const aiWidget = document.getElementById('ai-chatbot-widget');
+    const aiIcon = document.getElementById('ai-toggle-icon');
+    const aiInput = aiWidget.querySelector('input[type="text"]');
+    const aiSend = aiWidget.querySelector('button[type="submit"]');
+    const aiChatArea = aiWidget.querySelector('div[style*="overflow-y: auto"]');
+
+    // Estado: oculto por defecto
+    aiWidget.style.display = 'none';
+    aiInput.disabled = true;
+    aiSend.disabled = true;
+    aiSend.style.cursor = 'not-allowed';
+
+    let aiOpen = false;
+    aiBtn.addEventListener('click', function() {
+      aiOpen = !aiOpen;
+      if (aiOpen) {
+        aiWidget.style.display = 'flex';
+        aiInput.disabled = false;
+        aiSend.disabled = false;
+        aiSend.style.cursor = 'pointer';
+        aiIcon.textContent = '✖';
+        aiBtn.setAttribute('aria-label', 'Minimizar asistente AI');
+        aiInput.focus();
+      } else {
+        aiWidget.style.display = 'none';
+        aiInput.disabled = true;
+        aiSend.disabled = true;
+        aiSend.style.cursor = 'not-allowed';
+        aiIcon.textContent = '🤖';
+        aiBtn.setAttribute('aria-label', 'Abrir asistente AI');
+      }
+    });
+    // Si el usuario cierra el chat con la X interna, también actualiza el botón
+    aiWidget.querySelector('button').addEventListener('click', function() {
+      aiWidget.style.display = 'none';
+      aiInput.disabled = true;
+      aiSend.disabled = true;
+      aiSend.style.cursor = 'not-allowed';
+      aiIcon.textContent = '🤖';
+      aiBtn.setAttribute('aria-label', 'Abrir asistente AI');
+      aiOpen = false;
+    });
+  </script>
