@@ -6,12 +6,18 @@ import fetch from 'node-fetch';
 const router = express.Router();
 
 const HF_TOKEN = process.env.HF_TOKEN; // Debe estar en variables de entorno
-const HF_API_URL = 'https://router.huggingface.co/v1/chat/completions';
-const HF_MODEL = 'openai/gpt-oss-120b:fastest';
+const HF_API_URL = process.env.HF_API_URL || 'https://api-inference.huggingface.co/v1/chat/completions';
+const HF_MODEL = process.env.HF_MODEL || 'openai/gpt-oss-120b:fastest';
 
 router.post('/', async (req, res) => {
   const { prompt } = req.body;
   if (!prompt) return res.status(400).json({ error: 'Prompt requerido' });
+  if (!HF_TOKEN) {
+    return res.status(500).json({
+      error: 'HF_TOKEN no configurado. Agrega HF_TOKEN a tus variables de entorno para usar Hugging Face Inference API.'
+    });
+  }
+
   try {
     const hfRes = await fetch(HF_API_URL, {
       method: 'POST',
@@ -27,6 +33,16 @@ router.post('/', async (req, res) => {
         ]
       })
     });
+
+    if (!hfRes.ok) {
+      const body = await hfRes.text();
+      return res.status(hfRes.status).json({
+        error: 'Hugging Face respondió con error',
+        status: hfRes.status,
+        detail: body
+      });
+    }
+
     const data = await hfRes.json();
     let result = 'Error en la respuesta AI';
     if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
@@ -34,7 +50,8 @@ router.post('/', async (req, res) => {
     }
     res.json({ result });
   } catch (err) {
-    res.status(500).json({ error: 'Error al conectar con Hugging Face' });
+    console.error('aiChatProxy error:', err);
+    res.status(500).json({ error: 'Error al conectar con Hugging Face', detail: err.message });
   }
 });
 

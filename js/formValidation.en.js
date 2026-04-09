@@ -1,5 +1,5 @@
 // English Contact Form Handler for /en/pages/contact.html
-const API_URL = 'https://julianvargasdev.com';
+const API_URL = window.location.origin;
 
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('.contacto-form');

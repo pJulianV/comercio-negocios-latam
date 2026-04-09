@@ -65,9 +65,28 @@
           <div class="contacto-form-wrapper">
             <h3 data-i18n="contact.title">Envíanos un Mensaje</h3>
             <form class="contacto-form">
-                <p style="text-align:center;">
-                  <a href="mailto:julianvargastrb@gmail.com?subject=Contacto%20desde%20la%20web%20CNLATAM&body=Por%20favor%20escribe%20tu%20nombre%2C%20empresa%2C%20tel%C3%A9fono%20y%20mensaje%20aqui." class="submit-button" style="display:inline-block;padding:1em 2em;background:#1a237e;color:#fff;border-radius:5px;text-decoration:none;font-weight:bold;">ENVIAR MENSAJE</a>
-                </p>
+              <div id="formMessage" class="form-message"></div>
+              <div class="form-group">
+                <label for="nombre">NOMBRE</label>
+                <input type="text" id="nombre" name="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="empresa">EMPRESA</label>
+                <input type="text" id="empresa" name="empresa" required>
+              </div>
+              <div class="form-group">
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">TELÉFONO</label>
+                <input type="tel" id="telefono" name="telefono">
+              </div>
+              <div class="form-group">
+                <label for="mensaje">MENSAJE</label>
+                <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+              </div>
+              <button type="submit" class="submit-button">ENVIAR MENSAJE</button>
             </form>
           </div>
         </div>
@@ -149,5 +168,6 @@
   </footer>
   
   <script src="../js/script.js"></script>
+  <script src="../js/formValidation.js" defer></script>
 </body>
 </html>

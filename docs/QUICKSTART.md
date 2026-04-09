@@ -21,7 +21,12 @@ notepad .env
 2. Crea contraseña para "Correo"
 3. Copia la contraseña en `.env`
 
-### 4. Iniciar Servidor
+### 4. (Opcional) Configurar el chat AI
+1. Crea un token en https://huggingface.co/settings/tokens
+2. En `.env`, agrega el valor a `HF_TOKEN`
+3. (Opcional) Ajusta `HF_MODEL` si quieres usar otro modelo
+
+### 5. Iniciar Servidor
 ```bash
 npm run dev
 ```
